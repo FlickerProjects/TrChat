@@ -30,7 +30,7 @@ taboolib {
     install("platform-bukkit", "platform-bungee", "platform-velocity")
     install("expansion-command-helper", "expansion-player-database", "expansion-javascript")
     classifier = null
-    version = "6.0.7-26"
+    version = "6.0.7-34"
 }
 
 repositories {
