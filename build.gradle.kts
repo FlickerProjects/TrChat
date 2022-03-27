@@ -38,7 +38,7 @@ taboolib {
         "expansion-javascript"
     )
     classifier = null
-    version = "6.0.7-44"
+    version = "6.0.7-47"
 }
 
 repositories {
