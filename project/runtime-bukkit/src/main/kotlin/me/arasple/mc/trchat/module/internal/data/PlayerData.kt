@@ -36,7 +36,7 @@ class PlayerData(val player: OfflinePlayer) {
 
     val isVanishing get() = player.getDataContainer()["vanish"].cbool
 
-    val ignored get() = player.getDataContainer()["ignored"]?.split(",")?.map { it.toUUID() } ?: emptyList()
+    val ignored get() = player.getDataContainer()["ignored"]?.split(",")?.filter { it.isNotBlank() }?.map { it.toUUID() } ?: emptyList()
 
     fun setChannel(channel: Channel) {
         player.getDataContainer()["channel"] = channel.id
