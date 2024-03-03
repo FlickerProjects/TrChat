@@ -33,7 +33,7 @@ import taboolib.module.nms.MinecraftVersion
 import taboolib.module.nms.getI18nName
 import taboolib.module.nms.getInternalName
 import taboolib.module.ui.buildMenu
-import taboolib.module.ui.type.Hopper
+import taboolib.module.ui.type.Basic
 import taboolib.platform.util.asLangText
 import taboolib.platform.util.buildItem
 import taboolib.platform.util.sendLang
@@ -151,10 +151,14 @@ object ItemShow : Function("ITEM") {
         if (cacheHopper.getIfPresent(sha1) != null) {
             return sha1 to cacheHopper.getIfPresent(sha1)!!.serializeToByteArray().encodeBase64()
         }
-        val menu = buildMenu<Hopper>(sender.asLangText("Function-Item-Show-Title", sender.name)) {
-            rows(1)
-            map("xxixx")
-            set('x', XMaterial.BLACK_STAINED_GLASS_PANE) { name = "§r" }
+        val menu = buildMenu<Basic>(sender.asLangText("Function-Item-Show-Title", sender.name)) {
+            rows(3)
+            map(
+                "xxxxxxxxx",
+                "xxxxixxxx",
+                "xxxxxxxxx"
+            )
+            set('x', XMaterial.BLACK_STAINED_GLASS_PANE) { name = "§f" }
             set('i', item)
             onClick(lock = true)
         }

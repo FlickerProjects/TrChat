@@ -118,7 +118,9 @@ sealed interface BukkitProxyProcessor : PluginMessageListener {
                     val name = data[2]
                     val sha1 = data[3]
                     if (ItemShow.cacheHopper.getIfPresent(sha1) == null) {
-                        val inventory = data[4].decodeBase64().deserializeToInventory(createNoClickHopper(console().asLangText("Function-Item-Show-Title", name)))
+                        val inventory = data[4].decodeBase64().deserializeToInventory(
+                            createNoClickChest(3, console().asLangText("Function-Item-Show-Title", name))
+                        )
                         ItemShow.cacheHopper.put(sha1, inventory)
                     }
                 }
@@ -128,7 +130,9 @@ sealed interface BukkitProxyProcessor : PluginMessageListener {
                     val name = data[2]
                     val sha1 = data[3]
                     if (InventoryShow.cache.getIfPresent(sha1) == null) {
-                        val inventory = data[4].decodeBase64().deserializeToInventory(createNoClickChest(6, console().asLangText("Function-Inventory-Show-Title", name)))
+                        val inventory = data[4].decodeBase64().deserializeToInventory(
+                            createNoClickChest(6, console().asLangText("Function-Inventory-Show-Title", name))
+                        )
                         InventoryShow.cache.put(sha1, inventory)
                     }
                 }
@@ -138,7 +142,9 @@ sealed interface BukkitProxyProcessor : PluginMessageListener {
                     val name = data[2]
                     val sha1 = data[3]
                     if (EnderChestShow.cache.getIfPresent(sha1) == null) {
-                        val inventory = data[4].decodeBase64().deserializeToInventory(createNoClickChest(3, console().asLangText("Function-EnderChest-Show-Title", name)))
+                        val inventory = data[4].decodeBase64().deserializeToInventory(
+                            createNoClickChest(3, console().asLangText("Function-EnderChest-Show-Title", name))
+                        )
                         EnderChestShow.cache.put(sha1, inventory)
                     }
                 }
