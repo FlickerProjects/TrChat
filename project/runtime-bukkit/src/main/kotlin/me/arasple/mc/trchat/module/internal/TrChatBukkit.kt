@@ -40,6 +40,7 @@ object TrChatBukkit : Plugin() {
 
     @Awake(LifeCycle.CONST)
     internal fun onConst() {
+//        System.setProperty("taboolib.dev", "true")
         detectPaperEnv()
 //        registerLifeCycleTask(LifeCycle.INIT, 0) {
 //            YamlUpdater.update("settings.yml", updateExists = false)
