@@ -23,7 +23,6 @@ import org.bukkit.inventory.meta.BlockStateMeta
 import taboolib.common.io.digest
 import taboolib.common.platform.Platform
 import taboolib.common.platform.PlatformSide
-import taboolib.common.platform.function.info
 import taboolib.common.util.asList
 import taboolib.common.util.replaceWithOrder
 import taboolib.common.util.resettableLazy
@@ -105,7 +104,9 @@ object ItemShow : Function("ITEM") {
 
     override fun parseVariable(sender: Player, arg: String): ComponentText? {
         val item = sender.inventory.getItem(arg.toInt() - 1) ?: ItemStack(Material.AIR)
-        if (MinecraftVersion.majorLegacy >= 12005 && item.isAir()) return null
+        if (item.isAir()) {
+            return Components.text(sender.asLangText("Function-Item-Show-Air"))
+        }
         var newItem = if (compatible) {
             if (item.isAir()) ItemStack(Material.STONE) else buildItem(item) { material = Material.STONE }
         } else {
@@ -134,21 +135,20 @@ object ItemShow : Function("ITEM") {
                 }
                 sender.getComponentFromLang("Function-Item-Show-Format-With-Hopper", newItem.amount, sha1) { type, i, part, proxySender ->
                     val component = if (part.isVariable && part.text == "item") {
-                        item.getNameComponent(sender)
+                        item.getNameComponent(sender).hoverItemFixed(newItem)
                     } else {
                         Components.text(part.text.translate(proxySender).replaceWithOrder(newItem.amount, sha1))
                     }
-                    component.applyStyle(type, part, i, proxySender, newItem.amount, sha1).hoverItemFixed(newItem)
-                        .also { info("$i: ${it.toRawMessage()}") }
+                    component.applyStyle(type, part, i, proxySender, newItem.amount, sha1)
                 }
             } else {
                 sender.getComponentFromLang("Function-Item-Show-Format-New", newItem.amount) { type, i, part, proxySender ->
                     val component = if (part.isVariable && part.text == "item") {
-                        item.getNameComponent(sender)
+                        item.getNameComponent(sender).hoverItemFixed(newItem)
                     } else {
                         Components.text(part.text.translate(proxySender).replaceWithOrder(newItem.amount))
                     }
-                    component.applyStyle(type, part, i, proxySender, newItem.amount).hoverItemFixed(newItem)
+                    component.applyStyle(type, part, i, proxySender, newItem.amount)
                 }
             }
         }

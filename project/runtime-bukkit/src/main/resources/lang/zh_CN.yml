@@ -137,6 +137,7 @@ Function-Item-Show-Format-With-Hopper:
     text: '&8\[[item] &bx{0}&8\]'
     args:
       - command: '/view-item {1}'
+Function-Item-Show-Air: '&8[&f空气&8]'
 Function-Item-Show-Unavailable: '&c&l该物品已过期或不存在...'
 Function-Item-Show-Title: '{0}的物品'
 Function-Inventory-Show-Format:
@@ -155,19 +156,6 @@ Function-EnderChest-Show-Format:
         command: '/view-enderchest {1}'
 Function-EnderChest-Show-Unavailable: '&c&l该末影箱已过期或不存在...'
 Function-EnderChest-Show-Title: '{0}的末影箱'
-Function-Image-Show-Format:
-  - type: json
-    text: '[&8\[&f&l图片&8\]]'
-    args:
-      - hover: '&7点击查看图片({0})'
-        command: '/view-image {1}'
-Function-Image-Show-Unavailable:
-  - type: actionbar
-    text: '&c&l该图片加载中...'
-  - type: sound
-    sound: 'ENTITY_ITEM_BREAK'
-    volume: 1
-    pitch: 0
 
 Private-Message-Spy-Format: '&8[&3监听&8] &6{0} &2-> &3{1}&f: &7{2}'
 Private-Message-Spy-On:

@@ -28,5 +28,5 @@ fun Component.toNative() = Components.parseRaw(gson(this))
 fun ComponentText.toAdventure() = gson(toRawMessage())
 
 fun ComponentText.hoverItemAdventure(item: ItemStack): ComponentText {
-    return toAdventure().hoverEvent(item).toNative()
+    return toAdventure().hoverEvent(item.asHoverEvent()).toNative()
 }

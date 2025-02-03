@@ -17,7 +17,7 @@ import taboolib.common.platform.*
 import taboolib.common.platform.function.console
 import taboolib.common.platform.function.pluginVersion
 import taboolib.module.lang.sendLang
-import taboolib.module.nms.MinecraftVersion.majorLegacy
+import taboolib.module.nms.MinecraftVersion.versionId
 
 @PlatformSide(Platform.BUKKIT)
 object TrChatBukkit : Plugin() {
@@ -31,7 +31,7 @@ object TrChatBukkit : Plugin() {
         try {
             // Paper 1.16.5+
             Class.forName("com.destroystokyo.paper.PaperConfig")
-            if (majorLegacy >= 11604) {
+            if (versionId >= 11604) {
                 isPaperEnv = true
             }
         } catch (_: ClassNotFoundException) {
@@ -55,7 +55,7 @@ object TrChatBukkit : Plugin() {
 //        if (!Settings.usePackets
 //            || Folia.isFolia
 //            || Bukkit.getPluginManager().isPluginEnabled("Geyser-Spigot")
-//            || majorLegacy >= 12005
+//            || versionId >= 12005
 //            ) disablePacketListener()
         NMS.instance
         BukkitProxyManager.processor

@@ -57,6 +57,7 @@ object ListenerVelocityTransfer {
                 val doubleTransfer = data[4].toBoolean()
                 val ports = data[5].takeIf { it != "" }?.split(";")?.map { it.toInt() }
                 val message = GsonComponentSerializer.gson().deserialize(raw)
+                plugin.server.consoleCommandSource.sendMessage(message)
 
                 if (doubleTransfer) {
                     VelocityProxyManager.sendMessageToAll("BroadcastRaw", uuid, raw, perm, data[4], data[5]) {
@@ -71,7 +72,6 @@ object ListenerVelocityTransfer {
                         }
                     }
                 }
-                plugin.server.consoleCommandSource.sendMessage(message)
             }
             "UpdateNames" -> {
                 val names = data[1].split(",").map { it.split("-", limit = 2) }

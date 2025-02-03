@@ -130,6 +130,7 @@ Function-Item-Show-Format-With-Hopper:
     text: '&8\[[item] &bx{0}&8\]'
     args:
       - command: '/view-item {1}'
+Function-Item-Show-Air: '&8[&fAir&8]'
 Function-Item-Show-Unavailable: '&c&This item has been expired or does not exist...'
 Function-Item-Show-Title: '{0}''s Item'
 Function-Inventory-Show-Format:
@@ -152,19 +153,6 @@ Function-Mention-All-Format:
   - type: json
     text: ' [&a@&2Everyone] '
     args: [ ]
-Function-Image-Show-Format:
-  - type: json
-    text: '[&8\[&f&lImage&8\]]'
-    args:
-      - hover: '&7Click to view this image({0})'
-        command: '/view-image {1}'
-Function-Image-Show-Unavailable:
-  - type: actionbar
-    text: '&c&lThis image is still loading...'
-  - type: sound
-    sound: 'ENTITY_ITEM_BREAK'
-    volume: 1
-    pitch: 0
 
 Private-Message-Spy-Format: '&8[&3Spy&8] &6{0} &2-> &3{1}&f: &7{2}'
 Private-Message-Spy-On:

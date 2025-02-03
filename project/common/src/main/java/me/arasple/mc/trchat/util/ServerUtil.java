@@ -10,6 +10,10 @@ public class ServerUtil {
             isModdedServer = true;
         } catch (Throwable ignored) {
         }
-
+        try {
+            Class.forName("com.mohistmc.MohistMC");
+            isModdedServer = true;
+        } catch (Throwable ignored) {
+        }
     }
 }

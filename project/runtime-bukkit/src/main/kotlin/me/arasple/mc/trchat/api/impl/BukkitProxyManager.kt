@@ -4,6 +4,7 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder
 import me.arasple.mc.trchat.api.ClientMessageManager
 import me.arasple.mc.trchat.api.ProxyMode
 import me.arasple.mc.trchat.module.conf.file.Settings
+import me.arasple.mc.trchat.module.internal.data.PlayerData
 import me.arasple.mc.trchat.module.internal.proxy.BukkitProxyProcessor
 import me.arasple.mc.trchat.module.internal.proxy.redis.RedisManager
 import me.arasple.mc.trchat.util.parseString
@@ -167,7 +168,7 @@ object BukkitProxyManager : ClientMessageManager {
     fun updateNames() {
         sendMessage(onlinePlayers.firstOrNull(), arrayOf(
             "UpdateNames",
-            onlinePlayers.joinToString(",") { it.name + "-" + ChatColor.stripColor(it.displayName) },
+            onlinePlayers.filter { it.name !in PlayerData.vanishing }.joinToString(",") { it.name + "-" + ChatColor.stripColor(it.displayName) },
             port.toString()
         ))
     }

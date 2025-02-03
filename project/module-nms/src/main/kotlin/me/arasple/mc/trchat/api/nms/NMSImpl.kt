@@ -11,7 +11,7 @@ import taboolib.library.reflex.Reflex.Companion.invokeConstructor
 import taboolib.module.chat.ComponentText
 import taboolib.module.nms.MinecraftLanguage
 import taboolib.module.nms.MinecraftVersion.isUniversal
-import taboolib.module.nms.MinecraftVersion.majorLegacy
+import taboolib.module.nms.MinecraftVersion.versionId
 import taboolib.module.nms.NMSItemTag
 import taboolib.module.nms.nmsProxy
 import taboolib.module.nms.sendPacket
@@ -35,9 +35,9 @@ class NMSImpl : NMS() {
 
     override fun craftChatMessageFromComponent(component: ComponentText): Any {
         return try {
-            if (majorLegacy >= 11604) {
+            if (versionId >= 11604) {
                 CraftChatMessage19.fromJSON(component.toRawMessage())
-            } else if (majorLegacy >= 11600) {
+            } else if (versionId >= 11600) {
                 ChatSerializer16.a(component.toRawMessage())!!
             } else {
                 ChatSerializer12.a(component.toRawMessage())!!
@@ -49,7 +49,7 @@ class NMSImpl : NMS() {
 
     override fun rawMessageFromCraftChatMessage(component: Any): String {
         return try {
-            if (majorLegacy >= 11604) {
+            if (versionId >= 11604) {
                 CraftChatMessage19.toJSON(component as NMSIChatBaseComponent)
             } else {
                 ChatSerializer12.a(component as IChatBaseComponent12)!!
@@ -64,16 +64,16 @@ class NMSImpl : NMS() {
             component.sendTo(adaptPlayer(receiver))
             return
         }
-        if (majorLegacy >= 11900) {
+        if (versionId >= 11900) {
             val player = (receiver as CraftPlayer19).handle
             player.sendSystemMessage(craftChatMessageFromComponent(component) as NMSIChatBaseComponent)
-        } else if (majorLegacy >= 11600) {
+        } else if (versionId >= 11600) {
             receiver.sendPacket(PacketPlayOutChat::class.java.invokeConstructor(
                 craftChatMessageFromComponent(component),
                 ChatMessageType.CHAT,
                 sender
             ))
-        } else if (majorLegacy >= 11200) {
+        } else if (versionId >= 11200) {
             receiver.sendPacket(PacketPlayOutChat::class.java.invokeConstructor(
                 craftChatMessageFromComponent(component),
                 ChatMessageType.CHAT

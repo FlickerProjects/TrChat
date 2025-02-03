@@ -77,33 +77,31 @@ abstract class Function(val id: String) {
         }
 
         fun ComponentText.applyStyle(type: TypeJson, part: VariableReader.Part, i: Int, sender: ProxyPlayer, vararg args: Any): ComponentText {
-            if (part.isVariable) {
-                val extra = type.jsonArgs.getOrNull(i)
-                if (extra != null) {
-                    if (extra.containsKey("hover")) {
-                        hoverText(extra["hover"].toString().translate(sender).replaceWithOrder(*args))
-                    }
-                    if (extra.containsKey("command")) {
-                        clickRunCommand(extra["command"].toString().translate(sender).replaceWithOrder(*args))
-                    }
-                    if (extra.containsKey("suggest")) {
-                        clickSuggestCommand(extra["suggest"].toString().translate(sender).replaceWithOrder(*args))
-                    }
-                    if (extra.containsKey("insertion")) {
-                        clickInsertText(extra["insertion"].toString().translate(sender).replaceWithOrder(*args))
-                    }
-                    if (extra.containsKey("copy")) {
-                        clickCopyToClipboard(extra["copy"].toString().translate(sender).replaceWithOrder(*args))
-                    }
-                    if (extra.containsKey("file")) {
-                        clickOpenFile(extra["file"].toString().translate(sender).replaceWithOrder(*args))
-                    }
-                    if (extra.containsKey("url")) {
-                        clickOpenURL(extra["url"].toString().translate(sender).replaceWithOrder(*args))
-                    }
-                    if (extra.containsKey("font")) {
-                        font(extra["font"].toString().translate(sender).replaceWithOrder(*args))
-                    }
+            val extra = type.jsonArgs.getOrNull(i)
+            if (extra != null) {
+                if (extra.containsKey("hover")) {
+                    hoverText(extra["hover"].toString().translate(sender).replaceWithOrder(*args))
+                }
+                if (extra.containsKey("command")) {
+                    clickRunCommand(extra["command"].toString().translate(sender).replaceWithOrder(*args))
+                }
+                if (extra.containsKey("suggest")) {
+                    clickSuggestCommand(extra["suggest"].toString().translate(sender).replaceWithOrder(*args))
+                }
+                if (extra.containsKey("insertion")) {
+                    clickInsertText(extra["insertion"].toString().translate(sender).replaceWithOrder(*args))
+                }
+                if (extra.containsKey("copy")) {
+                    clickCopyToClipboard(extra["copy"].toString().translate(sender).replaceWithOrder(*args))
+                }
+                if (extra.containsKey("file")) {
+                    clickOpenFile(extra["file"].toString().translate(sender).replaceWithOrder(*args))
+                }
+                if (extra.containsKey("url")) {
+                    clickOpenURL(extra["url"].toString().translate(sender).replaceWithOrder(*args))
+                }
+                if (extra.containsKey("font")) {
+                    font(extra["font"].toString().translate(sender).replaceWithOrder(*args))
                 }
             }
             return this
