@@ -35,10 +35,9 @@ subprojects {
             )
             install(JavaScript)
             install(Bukkit, BungeeCord, Velocity)
-            repoTabooLib = "http://mcitd.cn:8081/repository/releases"
         }
         version {
-            taboolib = "6.2.2-test-101"
+            taboolib = "6.2.3"
             coroutines = null
 //            isSkipKotlin = true
 //            isSkipKotlinRelocate = true
@@ -49,7 +48,6 @@ subprojects {
     repositories {
         mavenLocal()
         mavenCentral()
-        maven("http://mcitd.cn:8081/repository/releases") { isAllowInsecureProtocol = true }
         maven("https://jitpack.io")
         maven("https://oss.sonatype.org/content/repositories/snapshots")
         maven("https://repo.papermc.io/repository/maven-public/")
